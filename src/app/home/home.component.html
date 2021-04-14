@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-sm-2 "></div>
+    <div class="col-sm-8">
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Search SPACs" style="border: none;font-size: 22px;font-weight: lighter;">
+            <span class="input-group-text" id="inputGroup-sizing-lg" style="border: none;background-color: white;border-radius: 0px;color: #efefef;"><i class="mdi mdi-magnify" style="font-size: 23px;"></i></span>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-9">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="hero">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><i class="mdi mdi-filter-outline"></i>Filter</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" style="padding: 0;border:none;">
+                    <i class="fa fa-bars" aria-hidden="true" style="color: #6A6A6A;"></i>
+          </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item " id="all">
+                            <a class="nav-link" aria-current="page">All</a>
+                        </li>
+                        <li class="nav-item me-md-3" id="a">
+                            <a class="nav-link">News</a>
+                        </li>
+                        <li class="nav-item me-md-3" id="b">
+                            <a class="nav-link">IPO</a>
+                        </li>
+                        <li class="nav-item me-md-3" id="c">
+                            <a class="nav-link">SEC</a>
+                        </li>
+                        <li class="nav-item me-md-3" id="d">
+                            <a class="nav-link"><span class="badge rounded-pill" style="background-color: #313C64;color:white">Research</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown" ngbDropdown>
+                    <a class="nav-link dropdown-toggle" id="UserDropdown" ngbDropdownToggle aria-expanded="false">
+                        <span class="font-weight-normal" style="color: #6A707E;font-size:12px;"> Sort by:A-Z </span></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-sm-9 grid-margin stretch-card">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" style="margin-top: 30px;" *ngFor="let news of spacsitems">
+                <div class="card h-100">
+                    <a [routerLink]="['/research', news.idnews]" style="text-decoration: none;color:black;">
+                        <img src="../../assets/images/img1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-10"><small class="text-muted">{{ news.date | date:'short'}}</small></div>
+                                <div class="col-2 "><span class="badge rounded-pill" id="butcat">{{ news.category }}</span></div>
+                            </div>
+                            <h5 class="card-title">{{ news.title }}</h5>
+                            <p class="card-text">{{ news.caption }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3 grid-margin stretch-card" id="bottommobile">
+        <div class="row">
+            <div class="card-body">
+                <div class="card-header " style="background-color: #1587B9;color:white;border-radius: 4px;font-family: 'Avenir', Helvetica,sans-serif;font-weight: lighter;">
+                    <i class="mdi mdi-fire"></i>Trending SPACs
+                </div>
+                <div class="table-responsive bg-light ">
+                    <table class="table table-hover ">
+                        <thead style="background-color: transparent; ">
+
+                            <tr>
+                                <th class="align-top" style="width:50%;">Company</th>
+                                <th class="align-top">Ticker</th>
+                                <th class="align-top">Market Cap</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let spacone of allspacs | slice:0:6;let i= index">
+                                <td><a [routerLink]="[ '/spacedet', spacone.idspac] " style="text-decoration: none;color:inherit; ">{{ spacone.Company }}</a></td>
+                                <td><a [routerLink]="[ '/spacedet', spacone.idspac] " style="text-decoration: none;color:inherit; ">{{ spacone.ticker }}</a></td>
+                                <td> <span *ngIf="spacone.overviews[i]"><a [routerLink]="[ '/spacedet', spacone.idspac] " style="text-decoration: none;color:inherit; ">{{ spacone.overviews[i].current_market_cap }}</a></span>
+                                    <span *ngIf="!spacone.overviews[i]"><a [routerLink]="[ '/spacedet', spacone.idspac] " style="text-decoration: none;color:inherit; ">No d..</a></span>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="card-body dashboard-inline-datepicker datepicker-custom">
+                <div class="card-header" style="background-color: #1587B9;font-size:17px;color:white;">
+                    <i class="mdi mdi-calendar-clock"></i> IPO Calendar
+                </div>
+                <div class="card-body bg-light">
+                    <ngb-datepicker [navigation]="'arrows'"></ngb-datepicker>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>

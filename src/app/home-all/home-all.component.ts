@@ -3,41 +3,21 @@ import { FixedScaleAxis } from 'chartist';
 import { NgbDate, NgbCalendar, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import {spacs} from '../services/spacs.bd'; 
 import {spacglobal} from '../services/spacglobal.bd';
-import {spacspage} from '../services/spacspage.bd';
 import { Pipe, PipeTransform } from '@angular/core';
+
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-home-all',
+  templateUrl: './home-all.component.html',
+  styleUrls: ['./home-all.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeAllComponent implements OnInit {
 
-  keyword = 'name';
-
-
-
-  colorAll = "white";
-  BackcolorAll = "#313C64";
-  
-  colorNews = "inherit";
-  BackcolorNews = "";
-  
-  colorIpo = "inherit";
-  BackcolorIpo = "";
-  
-  colorSec = "inherit";
-  BackcolorSec = "";
-
-  colorResearch = "inherit";
-  BackcolorResearch = "";
-
-  ShowAll : boolean = true;
+  ShowHome : boolean = true;
   ShowNews : boolean = false;
   ShowIpo : boolean = false;
   ShowSec : boolean = false;
   ShowResearch : boolean = false;
   
-  spacssearch:any;
   spacsitems:any;
   currentspac=null;
   currentIndex=-1;
@@ -198,176 +178,21 @@ category="All";
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
   }
 
-  constructor(calendar: NgbCalendar,  private spacsS:spacs,private spacs:spacglobal, private Spacspage:spacspage) {
+  constructor(calendar: NgbCalendar,  private spacsS:spacs,private spacs:spacglobal) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+  
   }
 
   ngOnInit():void{
     this.retrievespacsitems();
     this.getAllSpac();
-    this.getAllSpacsResearch();
   }
-
-                     
-                                    
-  selectEvent(item){
-    
-  }  
-  
-  onchangeSearch(search: string){
-
-  }
-
-  onFocused(e){
-
-  }
-                                    
-  HomeResearch():void{
-    console.log("Show ALl Items");
-  }
-
-  ShowAllItems():void{
-    console.log("Show ALl Items");
-
-    this.ShowAll = true;
-    this.ShowNews = false;
-    this.ShowIpo = false;
-    this.ShowSec = false;
-    this.ShowResearch = false;
-
-    this.colorAll = "white";
-    this.BackcolorAll = "#313C64";
-    
-    this.colorNews = "inherit";
-    this.BackcolorNews = "";
-    
-    this.colorIpo = "inherit";
-    this.BackcolorIpo = "";
-    
-    this.colorSec = "inherit";
-    this.BackcolorSec = "";
-
-    this.colorResearch = "inherit";
-    this.BackcolorResearch = "";
-  }                                                                
-  ShowNewsItems():void{
-    console.log("Show News Items");
-
-    this.ShowAll = false;
-    this.ShowNews = true;
-    this.ShowIpo = false;
-    this.ShowSec = false;
-    this.ShowResearch = false;
-
-    this.colorAll = "inherit";
-    this.BackcolorAll = "";
-    
-    this.colorNews = "white";
-    this.BackcolorNews = "#313C64";
-    
-    this.colorIpo = "inherit";
-    this.BackcolorIpo = "";
-    
-    this.colorSec = "inherit";
-    this.BackcolorSec = "";
-
-    this.colorResearch = "inherit";
-    this.BackcolorResearch = "";
-  }                                                                
-  ShowIpoItems():void{
-    console.log("Show IPO Items");
-
-    this.ShowAll = false;
-    this.ShowNews = false;
-    this.ShowIpo = true;
-    this.ShowSec = false;
-    this.ShowResearch = false;
-
-    this.colorAll = "inherit";
-    this.BackcolorAll = "";
-    
-    this.colorNews = "inherit";
-    this.BackcolorNews = "";
-    
-    this.colorIpo = "white";
-    this.BackcolorIpo = "#313C64";
-    
-    this.colorSec = "inherit";
-    this.BackcolorSec = "";
-
-    this.colorResearch = "inherit";
-    this.BackcolorResearch = "";
-  }                                                                
-  ShowSecItems():void{
-    console.log("Show sec Items");
-
-    this.ShowAll = false;
-    this.ShowNews = false;
-    this.ShowIpo = false;
-    this.ShowSec = true;
-    this.ShowResearch = false;
-
-    this.colorAll = "inherit";
-    this.BackcolorAll = "";
-    
-    this.colorNews = "inherit";
-    this.BackcolorNews = "";
-    
-    this.colorIpo = "inherit";
-    this.BackcolorIpo = "";
-    
-    this.colorSec = "white";
-    this.BackcolorSec = "#313C64";
-
-    this.colorResearch = "inherit";
-    this.BackcolorResearch = "";
-  }                                                                
-  ShowResearchItems():void{
-    console.log("Show Research Items");
-
-    this.ShowAll = false;
-    this.ShowNews = false;
-    this.ShowIpo = false;
-    this.ShowSec = false;
-    this.ShowResearch = true;
-
-    this.colorAll = "inherit";
-    this.BackcolorAll = "";
-    
-    this.colorNews = "inherit";
-    this.BackcolorNews = "";
-    
-    this.colorIpo = "inherit";
-    this.BackcolorIpo = "";
-    
-    this.colorSec = "inherit";
-    this.BackcolorSec = "";
-
-    this.colorResearch = "white";
-    this.BackcolorResearch = "#313C64";
-  }
-
-
   getNewsC():void{
     if(this.retrievespacsitems)
 this.category="News";
 console.log(this.category);
   }
-
-  getAllSpacsResearch() {
-    this.Spacspage.getAll()
-      .subscribe(
-        data => {
-          this.spacssearch = data;
-          if(this.spacssearch)
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
   retrievespacsitems() {
     this.spacsS.getAll()
       .subscribe(
@@ -380,7 +205,6 @@ console.log(this.category);
           console.log(error);
         });
   }
-
   getAllSpac() {
     this.spacs.getAll()
       .subscribe(

@@ -1,8 +1,30 @@
 <div class="row">
     <div class="col-md-8">
         <div class="input-group input-group-lg" style="margin-bottom:30px;">
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Search SPACs" style="border: none;font-size: 22px;font-weight: lighter;">
-            <span class="input-group-text" id="inputGroup-sizing-lg" style="border: none;background-color: white;border-top-left-radius: 0px;border-bottom-left-radius: 0px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;color: #efefef;"><i class="mdi mdi-magnify" style="font-size: 23px;color:#707070;opacity: 0.5;"></i></span>
+            <div class="ng-autocomplete col-sm-8">
+                <ng-autocomplete
+                [data]="spacssearch"
+                [searchKeyword]="keyword"
+                placeholder="Search SPACs"
+                (selected)='selectEvent($event)'
+                (inputChanged)='onchangeSearch($event)'
+                (inputFocused)='onFocused($event)'
+                historyIdentifier="spacssearch"
+                [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate">
+                </ng-autocomplete>
+                
+                
+    
+                <ng-template #itemTemplate let-item>
+                    <a [routerLink]="[ '/spacedet', item.idspac]" [innerHTML]="item.name"></a>
+                </ng-template>
+    
+                <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                </ng-template>
+    
+            </div>
         </div>
 
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

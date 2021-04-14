@@ -2,26 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-//const baseUrl = 'http://18.206.59.178:8060/api/news';
-const baseUrl = 'http://localhost:8070/api/news';
+//const baseUrl = 'http://18.206.59.178:8070/api/price_histories';
+const baseUrl = 'http://localhost:8070/api/price_histories';
 @Injectable({
   providedIn: 'root'
 })
-export class spacs {
+export class price_histories {
   constructor(private http: HttpClient) { }
 
   getAll() {
     return this.http.get(baseUrl);
   }
-  getLimit(){
-    return this.http.get(`${baseUrl}/pagination?page=1&size=4`);
+  
+  getAllpagination(page,size){
+    return this.http.get(`${baseUrl}/pagination?page=${page}&siez=${size}`);
   }
-  get(id) {
-    return this.http.get(`${baseUrl}/${id}`);
-  }
-
-  getbycat(cat) {
-    return this.http.get(`${baseUrl}/findbycat/${cat}`);
+  getAllWhere(id) {
+    return this.http.get(`${baseUrl}/findone/${id}`);
   }
 
   create(data) {
@@ -34,13 +31,5 @@ export class spacs {
 
   delete(id) {
     return this.http.delete(`${baseUrl}/${id}`);
-  }
-
-  deleteAll() {
-    return this.http.delete(baseUrl);
-  }
-
-  findByTitle(title) {
-    return this.http.get(`${baseUrl}?title=${title}`);
   }
 }

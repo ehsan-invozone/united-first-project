@@ -1,0 +1,18 @@
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" style="margin-top: 30px;" *ngFor="let news of spacsitems">
+        <div class="card h-100">
+            <a [routerLink]="['/research', news.idnews]" style="text-decoration: none;color:black;">
+                <img src="../../assets/images/img1.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10"><small class="text-muted">{{ news.date | date:'short'}}</small></div>
+                        <div class="col-2 "><span class="badge rounded-pill" id="butcat">{{ news.category }}</span></div>
+                    </div>
+                    <h5 class="card-title">{{ news.title }}</h5>
+                    <p class="card-text">{{ news.caption }}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

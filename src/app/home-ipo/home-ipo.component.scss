@@ -11,13 +11,6 @@
     }
 }
 
-.table .table-hover tr,
-td,
-th {
-    font-family: 'Avenir', Helvetica, sans-serif;
-    color: #6A707E;
-}
-
 #btn {
     position: absolute;
     top: 45%;
@@ -39,81 +32,17 @@ th {
 }
 
 @media only screen and (max-width: 600px) {
-    #butcat {
-        margin-left: -10px;
-        background-color: #313C64;
-        color: white;
-        justify-content: end;
-    }
-}
-
-@media only screen and (min-width: 600px) {
-    #butcat {
-        background-color: #313C64;
-        color: white;
-        margin-left: -20px;
-    }
-}
-
-@media only screen and (max-width: 600px) {
     #trending {
-        margin-top: 0px;
-    }
-    #bottommobile {
         margin-top: 0px;
     }
     #btn {
         right: -5%;
-    }
-    #hero {
-        margin-top: 50px;
-        margin-bottom: 20px;
-        background-color: white;
-    }
-    #hero .navbar-brand {
-        font-size: 14px;
-        color: #707070;
-        font-weight: lighter;
-    }
-    #navbarText ul {
-        color: #6A707E;
-    }
-}
-
-@media only screen and (min-width: 600px) {
-    #hero {
-        margin-top: 50px;
-        margin-bottom: 20px;
-        height: 50px;
-    }
-    #hero .navbar-brand {
-        font-size: 14px;
-        color: #707070;
-        font-weight: lighter;
-    }
-    #navbarText ul {
-        margin-left: 100px;
-        color: #6A707E;
-    }
-    #all {
-        height: 30px;
-    }
-    #b,
-    #c,
-    #d {
-        margin-left: 25px;
-    }
-    #a {
-        margin-left: 30px;
     }
 }
 
 @media only screen and (min-width: 600px) {
     #trending {
         margin-top: -150px;
-    }
-    #bottommobile {
-        margin-top: -90px;
     }
 }
 
@@ -620,18 +549,3 @@ mgl-map {
     height: 280px;
     width: 100%;
 }
-
-
-
-
-.ng-autocomplete {
-    ::ng-deep .autocomplete-container {
-        
-      box-shadow: none;
-      font-size: 22px;
-      font-weight: lighter;
-      width: 170%;
-      font-size: 22px;
-      font-weight: lighter;
-    }
-  }

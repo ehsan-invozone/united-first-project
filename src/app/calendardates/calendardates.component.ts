@@ -1,4 +1,5 @@
 import {spacglobal} from '../services/spacglobal.bd'; 
+import {spacspage} from '../services/spacspage.bd';
 import {events} from '../services/events.bd'; 
 import {FullCalendarComponent} from '@fullcalendar/angular';
 import { Router } from '@angular/router';
@@ -21,6 +22,10 @@ const routes: Routes = [
   styleUrls: ['./calendardates.component.scss']
 })
 export class CalendardatesComponent implements OnInit {
+  
+  keyword = 'name';
+  spacssearch:any;
+
   @ViewChild(FullCalendarComponent, {static: false})
   calendarComponent: FullCalendarComponent;
   calendarOptions: CalendarOptions
@@ -38,7 +43,7 @@ currentEvents=[];
   eventsipos=[];
   eventsnews=[];
   eventsterm=[];
-  constructor(private spacsS:spacglobal,private event:events,private newses:spacs,public router: Router,private ngZone:NgZone) { }
+  constructor(private spacsS:spacglobal,private event:events,private newses:spacs,public router: Router,private ngZone:NgZone, private Spacspage:spacspage) { }
   ngOnInit(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
@@ -103,6 +108,9 @@ currentEvents=[];
    this.retrievespacsitems();
    console.log(this.month);
    console.log(this.year);
+
+   
+   this.getAllSpacsResearch();
   }
 
   showipo(){
@@ -117,6 +125,22 @@ currentEvents=[];
     this.calendarComponent.getApi().removeAllEvents();
     this.calendarComponent.getApi().addEventSource(this.eventsterm)
   }
+  
+
+  getAllSpacsResearch() {
+    this.Spacspage.getAll()
+      .subscribe(
+        data => {
+          this.spacssearch = data;
+          if(this.spacssearch)
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+
   retrievespacsitems() {
     this.spacsS.getAll()
       .subscribe(

@@ -14,10 +14,20 @@ import { HomeComponent } from './home/home.component';
 import {AuthGuard} from './util/app.gard';
 import { CalendardatesComponent } from './calendardates/calendardates.component';
 import { SpacdatableComponent } from './spacdatable/spacdatable.component';
+import { HomeNewsComponent } from './home-news/home-news.component';
+import { HomeSecComponent } from './home-sec/home-sec.component';
+import { HomeIpoComponent } from './home-ipo/home-ipo.component';
+import { HomeResearchComponent } from './home-research/home-research.component';
+import { HomeAllComponent } from './home-all/home-all.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path : 'spacedet/:id',component:SpacDetComponent,canActivate:[AuthGuard]},
   { path: 'home',component:HomeComponent ,canActivate:[AuthGuard]},
+  { path: 'homeall',component:HomeAllComponent ,canActivate:[AuthGuard]},
+  { path: 'homenews',component:HomeNewsComponent ,canActivate:[AuthGuard]},
+  { path: 'homesec',component:HomeSecComponent ,canActivate:[AuthGuard]},
+  { path: 'homeipo',component:HomeIpoComponent ,canActivate:[AuthGuard]},
+  { path: 'homeresearch',component:HomeResearchComponent ,canActivate:[AuthGuard]},
   { path: 'spacs',component:SpacsComponent ,canActivate:[AuthGuard]},
   { path: 'calendar',component:CalendardatesComponent ,canActivate:[AuthGuard]},
   { path: 'research/:id',component:ResearchComponent ,canActivate:[AuthGuard]},

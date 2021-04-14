@@ -53,6 +53,13 @@ import { TableFilterPipe } from './spacs/tableFilter.pipe';
 import * as echarts from 'echarts';
 import { CalendardatesComponent } from './calendardates/calendardates.component';
 import { SpacdatableComponent } from './spacdatable/spacdatable.component';
+import { HomeAllComponent } from './home-all/home-all.component';
+import { HomeIpoComponent } from './home-ipo/home-ipo.component';
+import { HomeNewsComponent } from './home-news/home-news.component';
+import { HomeResearchComponent } from './home-research/home-research.component';
+import { HomeSecComponent } from './home-sec/home-sec.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
@@ -87,7 +94,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarComponent,
     HomeComponent,
     CalendardatesComponent,
-    SpacdatableComponent
+    SpacdatableComponent,
+    HomeAllComponent,
+    HomeIpoComponent,
+    HomeNewsComponent,
+    HomeResearchComponent,
+    HomeSecComponent
   ],
   imports: [ 
     KeycloakAngularModule,
@@ -112,6 +124,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChartsModule,
     Ng2PageScrollModule,
     MdbScrollspyModule,
+    AutocompleteLibModule, 
   
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({

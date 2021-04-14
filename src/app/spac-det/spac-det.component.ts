@@ -12,7 +12,8 @@ import {groupBy} from 'lodash-es';
 import {shareholders} from '../services/shareholders.bd';
 import {spacspage} from '../services/spacspage.bd';
 import {stock} from '../services/commonstock.bd';
-import {warrant} from '../services/warrentinformation.bd'; 
+import {warrant} from '../services/warrentinformation.bd';
+import {price_histories} from '../services/price_histories.bd'; 
 import { Chart } from 'chart.js';
 @Component({
   selector: 'app-spac-det',
@@ -22,6 +23,8 @@ import { Chart } from 'chart.js';
 export class SpacDetComponent implements OnInit,OnDestroy {
   options: any;
   updateOptions: any;
+  pricesResults:any;
+
 
   private oneDay = 24 * 3600 * 1000;
   private now: Date;
@@ -68,7 +71,7 @@ export class SpacDetComponent implements OnInit,OnDestroy {
   tableSizes = [3, 6, 9, 12];
   constructor(private activeID:ActivatedRoute,private tutorialService: overview,private latestnews:spacs,private trust:trusts,private unit:units,
     private filing:filings,private admins:admins,private admin_details:adminsDet,private directors_officiers:directors,private shareholdersa:shareholders,private spacs:spacspage,
-    private stock:stock,private warrant:warrant,
+    private stock:stock,private warrant:warrant, private Price_histories:price_histories
     ) { }
   spacId: string;
    
@@ -105,7 +108,6 @@ export class SpacDetComponent implements OnInit,OnDestroy {
          },
          yAxis: {
            type: 'value',
-           boundaryGap: [0, '10%'],
            splitLine: {
              show: false
            }
@@ -147,7 +149,26 @@ export class SpacDetComponent implements OnInit,OnDestroy {
     this.getCommonStock();
     this.getWarrant();
     this.getRelatedresearch();
+    this.getAllpriceHistoires();
   }
+
+  
+
+  getAllpriceHistoires() {
+    this.Price_histories.getAll()
+      .subscribe(
+        data => {
+          this.pricesResults = data;
+          if(this.pricesResults)
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+
+
   ngOnDestroy() {
     clearInterval(this.timer);
   }

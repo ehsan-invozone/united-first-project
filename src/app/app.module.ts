@@ -19,46 +19,26 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
-import { SpacsComponent } from './spacs/spacs.component';
-import { SpacDetComponent } from './spac-det/spac-det.component';
-import { ChartjsComponent } from './chartjs/chartjs.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { MdbScrollspyModule } from 'mdb-angular-ui-kit';
-import {Ng2PageScrollModule} from 'ng2-page-scroll';
-import {FixedMenuComponent} from './fixed-menu/fixed-menu.component';
-import { NgxEchartsModule } from 'ngx-echarts';
-import { initializeKeycloak } from './util/app.init';
-import { CollapseModule,WavesModule } from 'angular-bootstrap-md';
-import { JwPaginationModule } from 'jw-angular-pagination';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { ResearchComponent } from './research/research.component';
-import { CardnewsComponent } from './cardnews/cardnews.component';
-import { BackspacaddComponent } from './backspacadd/backspacadd.component';
+import {FixedMenuComponent} from './shared/components/fixed-menu/fixed-menu.component';
+
+import { CardnewsComponent } from './shared/components/cardnews/cardnews.component';
 import { ToastrModule } from 'ngx-toastr';
-import { FixedmenubackComponent } from './fixedmenuback/fixedmenuback.component';
-import { BackoverviewaddComponent } from './backoverviewadd/backoverviewadd.component';
-import { BacktrustaddComponent } from './backtrustadd/backtrustadd.component';
-import { BackadminaddComponent } from './backadminadd/backadminadd.component';
-import { BackadmindetailsaddComponent } from './backadmindetailsadd/backadmindetailsadd.component';
-import { BackdiraoffaddComponent } from './backdiraoffadd/backdiraoffadd.component';
-import { HomeComponent } from './home/home.component';
-import { NavbarModule, ButtonsModule } from 'angular-bootstrap-md'
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { initializeKeycloak } from './util/app.init';
+import { FixedmenubackComponent } from './shared/components/fixedmenuback/fixedmenuback.component';
+
+import { NavbarModule, ButtonsModule } from 'angular-bootstrap-md';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { TableFilterPipe } from './spacs/tableFilter.pipe';
-import * as echarts from 'echarts';
-import { CalendardatesComponent } from './calendardates/calendardates.component';
-import { SpacdatableComponent } from './spacdatable/spacdatable.component';
-import { HomeAllComponent } from './home-all/home-all.component';
-import { HomeIpoComponent } from './home-ipo/home-ipo.component';
-import { HomeNewsComponent } from './home-news/home-news.component';
-import { HomeResearchComponent } from './home-research/home-research.component';
-import { HomeSecComponent } from './home-sec/home-sec.component';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
+import { DashboardModule } from './dashboard/dashboard.module';
+import { HomeModule } from './home/home.module';
+import { SpacsModule } from './spacs/spacs.module';
+import { ChartslistModule } from './charts/charts.module';
+import { CalendarListModule } from './calendar/calendar.module';
+import { ResearchModule } from './research/research.module';
+import { SharedModule } from './shared/shared.module';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -73,38 +53,21 @@ export function HttpLoaderFactory(http: HttpClient) {
  
   declarations: [
     AppComponent,
-    TableFilterPipe,
     FooterComponent,
     SpinnerComponent,
     ContentAnimateDirective,
-    SpacsComponent,
-    SpacDetComponent,
-    ChartjsComponent,
-    CalendarComponent,
     FixedMenuComponent,
-    ResearchComponent,
     CardnewsComponent,
-    BackspacaddComponent,
     FixedmenubackComponent,
-    BackoverviewaddComponent,
-    BacktrustaddComponent,
-    BackadminaddComponent,
-    BackadmindetailsaddComponent,
-    BackdiraoffaddComponent,
-    NavbarComponent,
-    HomeComponent,
-    CalendardatesComponent,
-    SpacdatableComponent,
-    HomeAllComponent,
-    HomeIpoComponent,
-    HomeNewsComponent,
-    HomeResearchComponent,
-    HomeSecComponent
+    NavbarComponent
   ],
   imports: [ 
-    KeycloakAngularModule,
-    FullCalendarModule,
-    MbscModule, 
+    
+    HomeModule,
+    SpacsModule,
+    ResearchModule,
+    CalendarListModule,
+    ChartslistModule,
     KeycloakAngularModule,
     CommonModule,
     BrowserModule,
@@ -112,39 +75,20 @@ export function HttpLoaderFactory(http: HttpClient) {
     ButtonsModule,
     HttpClientModule,
     AppRoutingModule,
-    CollapseModule,
-    NgxDatatableModule,
-    JwPaginationModule,
-    WavesModule,
-    NgxPaginationModule,
-    NgbModule,
+    
+    DashboardModule,
+    
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule,
-    Ng2PageScrollModule,
-    MdbScrollspyModule,
-    AutocompleteLibModule, 
-  
-    FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
+    
+    NgbModule,
+    SharedModule,
     ToastrModule.forRoot({
       timeOut:3000,
       progressBar:true,
       closeButton:true,
     }),
-    NgxEchartsModule.forRoot({
-      /**
-       * This will import all modules from echarts.
-       * If you only need custom modules,
-       * please refer to [Custom Build] section.
-       */
-     echarts,// or import('./path-to-my-custom-echarts')
-    }),
-    MDBBootstrapModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -154,12 +98,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
-    {
+    { // Keycloak auth comment
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService],
-    }],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

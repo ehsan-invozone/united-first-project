@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit{
-  title = 'UFP';
+  title :string = 'UFP';
   showSidebar: boolean = true;
   showNavbar: boolean = true;
   showFooter: boolean = true;

@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule, Routes } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
 import { ChartistModule } from 'ng-chartist';
-import { DashboardComponent } from './dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { NgCircleProgressModule } from 'ng-circle-progress';
@@ -16,16 +15,33 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http,  './assets/i18n/');
 }
 
-const routes: Routes = [
-  { path: '', component: DashboardComponent, pathMatch: 'full' },
-];
+import { DashboardRoutingModule } from './dashboard-routing.module';
+import { AddTrustComponent } from './pages/add-trust/add-trust.component';
+import { AddSpacComponent } from './pages/add-spac/add-spac.component';
+import { AddAdministrativeDetailsComponent } from './pages/add-administrative-details/add-administrative-details.component';
+import { AddDirectorsAndOfficiersComponent } from './pages/add-directors-and-officiers/add-directors-and-officiers.component';
+import { AddAdministrativeComponent } from './pages/add-administrative/add-administrative.component';
+import { AddOverviewComponent } from './pages/add-overview/add-overview.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SharedModule } from '../shared/shared.module';
+
 @NgModule({
-  declarations: [ DashboardComponent],
+  declarations: [
+    DashboardComponent,
+    AddAdministrativeComponent,
+    AddAdministrativeDetailsComponent,
+    AddDirectorsAndOfficiersComponent,
+    AddOverviewComponent,
+    AddSpacComponent,
+    AddTrustComponent,
+
+  ],
   imports: [
-    BrowserModule,
+    // BrowserModule,
+    SharedModule,
     CommonModule,
+    DashboardRoutingModule,
     FormsModule,
-    RouterModule.forChild(routes),
     HttpClientModule,
     ChartsModule,
     ChartistModule,

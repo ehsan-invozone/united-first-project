@@ -5,6 +5,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartjsComponent } from './chartjs/chartjs.component';
 import { ChartistModule } from 'ng-chartist';
 import { ChartistComponent } from './chartist/chartist.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: 'chartjs', component: ChartjsComponent },
@@ -15,9 +16,10 @@ const routes: Routes = [
   declarations: [ChartjsComponent, ChartistComponent],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes),
     ChartsModule,
     ChartistModule
   ]
 })
-export class ChartsDemoModule { }
+export class ChartslistModule { }

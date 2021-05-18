@@ -23,7 +23,7 @@ import {FixedMenuComponent} from './shared/components/fixed-menu/fixed-menu.comp
 
 import { CardnewsComponent } from './shared/components/cardnews/cardnews.component';
 import { ToastrModule } from 'ngx-toastr';
-import { initializeKeycloak } from './util/app.init';
+// import { initializeKeycloak } from './util/app.init';
 import { FixedmenubackComponent } from './shared/components/fixedmenuback/fixedmenuback.component';
 
 import { NavbarModule, ButtonsModule } from 'angular-bootstrap-md';
@@ -98,12 +98,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
-    { // Keycloak auth comment
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService],
-    }
+    // { // Keycloak auth comment
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializeKeycloak,
+    //   multi: true,
+    //   deps: [KeycloakService],
+    // }
   ],
   bootstrap: [AppComponent]
 })

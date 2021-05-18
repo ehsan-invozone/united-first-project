@@ -39,13 +39,13 @@ navBarTogglerIsVisible() {
   }
  
   private initialiseUserOptions(): void{
-    this.user=this.keycloackService.getUsername();   // Keycloak auth comment
-    if(this.user=='admin'){
-this.admin=true;
-    }else{
-      this.admin=false;
+//     this.user=this.keycloackService.getUsername();   // Keycloak auth comment
+//     if(this.user=='admin'){
+// this.admin=true;
+//     }else{
+//       this.admin=false;
 
-    }
+//     }
   }
 logout():void{
   this.keycloackService.logout();

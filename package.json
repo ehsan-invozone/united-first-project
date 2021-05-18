@@ -1,5 +1,5 @@
 {
-    "name": "demo1",
+    "name": "united-first-project",
     "version": "1.0.1",
     "scripts": {
         "ng": "ng",
@@ -53,6 +53,7 @@
         "compass-mixins": "^0.12.10",
         "date-fns": "^2.19.0",
         "echarts": "^5.0.2",
+        "express": "^4.17.1",
         "flag-icon-css": "^3.5.0",
         "flatpickr": "^4.6.9",
         "jquery": "^3.6.0",

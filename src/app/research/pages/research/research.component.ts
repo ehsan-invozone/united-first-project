@@ -57,7 +57,7 @@ console.log(this.newsresarch);
           error => {
             console.log(error);
           });
-        if(this.newsDet.category=='Research'){
+        if(this.newsDet?.category=='Research'){
         this.resarch=true;
         }else
         {

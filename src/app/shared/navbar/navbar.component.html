@@ -10,7 +10,7 @@
 
         <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02" [class.collapse]="collapsed">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item active "> <a class="nav-link" routerLink="/" (click)="collapseNav()"><i class="mdi mdi-home" style="font-size: 14px;"></i>&nbsp;&nbsp;Home </a> </li>
+                <li class="nav-item active "> <a class="nav-link" routerLink="/home" (click)="collapseNav()"><i class="mdi mdi-home" style="font-size: 14px;"></i>&nbsp;&nbsp;Home </a> </li>
                 <li class="nav-item"><a class="nav-link" routerLink="/spacs" (click)="collapseNav()"><i class="mdi mdi-poll" style="font-size: 14px;"></i>&nbsp;&nbsp;SPACs </a></li>
                 <li class="nav-item"><a class="nav-link" routerLink="/calendar" (click)="collapseNav()"><i class="mdi mdi-calendar-clock" style="font-size: 14px;"></i>&nbsp;&nbsp;Calendar </a></li>
                 <li class="nav-item" *ngIf="admin"><a class="nav-link" routerLink="/backspacadd" (click)="collapseNav()"><i class="fa fa-tachometer" aria-hidden="true" style="font-size: 14px;"></i>&nbsp;&nbsp;Dashboard </a></li>

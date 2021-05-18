@@ -6,14 +6,14 @@
         <div class="card">
             <div class="card-body performane-indicator-card">
                 <div class="d-sm-flex">
-                    <h4 class="card-title flex-shrink-1">{{ newsDet.title }}</h4>
+                    <h4 class="card-title flex-shrink-1">{{ newsDet?.title }}</h4>
                     <p class="m-sm-0 ml-sm-auto flex-shrink-0">
-                        {{ newsDet.createdAt | date:'short'}}
+                        {{ newsDet?.createdAt | date:'short'}}
                     </p>
                 </div>
                 <div class="d-sm-flex flex-wrap mt-3">
                     <p>
-                        {{ newsDet.caption }}
+                        {{ newsDet?.caption }}
                     </p>
                 </div>
                 <ng-template [ngIf]="resarch">
@@ -31,9 +31,9 @@
     <div class="col-md-4">
         <div class=" card-body " id="coll">
             <div class="card-header " style="background-color: #313C64;margin-bottom:10px;border-radius: 4px;">
-                <h1 style="font-family: Arial Black; color: white;font-size: 20px; ">{{ spacs.name }}</h1>
-                <h3 style="font-family: Arial Black; color: white;padding: 5px 0px 5px 0px; ">{{ spacs.ticker }}</h3>
-                <p style="color: white; "><a href="{{ spacs.filins_link }}" target="_blank" style="text-decoration: none;color: white;">Company filings <i class="fa fa-external-link "></i></a></p>
+                <h1 style="font-family: Arial Black; color: white;font-size: 20px; ">{{ spacs?.name }}</h1>
+                <h3 style="font-family: Arial Black; color: white;padding: 5px 0px 5px 0px; ">{{ spacs?.ticker }}</h3>
+                <p style="color: white; "><a href="{{ spacs?.filins_link }}" target="_blank" style="text-decoration: none;color: white;">Company filings <i class="fa fa-external-link "></i></a></p>
             </div>
             <div class="card-body " style="background-color: white;color:black; ">
 
@@ -81,10 +81,10 @@
                         </tr>
 
                     </thead>
-                    <tbody *ngFor="let spacs of similarspacs.spacs ">
+                    <tbody *ngFor="let spacs of similarspacs?.spacs ">
                         <tr>
-                            <td><a [routerLink]="[ '/spacedet', spacs.idspac] " style="text-decoration: none;color:inherit; ">{{ spacs.name }}</a></td>
-                            <td><a [routerLink]="[ '/spacedet', spacs.idspac] " style="text-decoration: none;color:inherit; ">{{ spacs.ticker }}</a></td>
+                            <td><a [routerLink]="[ '/spacedet', spacs.idspac] " style="text-decoration: none;color:inherit; ">{{ spacs?.name }}</a></td>
+                            <td><a [routerLink]="[ '/spacedet', spacs.idspac] " style="text-decoration: none;color:inherit; ">{{ spacs?.ticker }}</a></td>
                             <td><a [routerLink]="[ '/spacedet', spacs.idspac] " style="text-decoration: none;color:inherit; ">No data</a></td>
                         </tr>
 
@@ -115,10 +115,10 @@
                             <th>Title</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let time of newsresarch.spacs;let i=index ">
+                    <tbody *ngFor="let time of newsresarch?.spacs;let i=index ">
                         <tr>
-                            <td>{{ time.date }}</td>
-                            <td>{{ time.title }}</td>
+                            <td>{{ time?.date }}</td>
+                            <td>{{ time?.title }}</td>
                         </tr>
 
                     </tbody>
